@@ -1,0 +1,48 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.wrapper{
+    border: 1px solid;
+    width: 99vw;
+    height: 99.5vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-container{
+    border: 1px solid;
+    width: 50%;
+    height: 50%;
+}
+
+.register-title{
+    border: 1px solid;
+    width: 99%;
+    height: 20%;
+    margin: auto;
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-title p{
+    font-size: 40px;
+}
+
+.field-entry-container{
+    border: 1px solid;
+    width: 99%;
+    height: 77%;
+    margin: auto;
+    margin-top: 2px;
+}
+
+.input-title{
+    display: inline-block;
+}

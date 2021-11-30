@@ -1,0 +1,11 @@
+<%- include('partials/header') -%>
+
+<h1>Add a post</h1>
+
+<form action="/addpost" method="POST">
+    <p>Title: <input type="text" name="title" placeholder="Enter title"></p>
+    <p>Body: <input type="text" name="desc" placeholder="Enter body"></p>
+    <button>Submit</button>
+</form>
+
+<%- include('partials/footer') -%>

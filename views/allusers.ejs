@@ -1,0 +1,27 @@
+<%- include('partials/header') -%>
+
+<div class="body-container">
+    <% allUsers.forEach(function(user){ %>
+        <% var follow=false %>
+        <a href="/profile/<%= user._id %>">
+            <%= user.firstname %>
+        </a>
+        <%= user.email %>
+
+        <% if(user._id.toString()!=loggedInUser._id){
+            loggedInUser.followings.forEach((followingUser)=>{
+                if(followingUser.id.toString()==user._id.toString()){
+                    follow=true;
+                }
+            })
+            if(follow==false){ %>
+                <a href="/follow/<%= user._id %>"><button>follow</button></a>
+            <% }else{ %>
+                <a href="/unfollow/<%= user._id %>"><button>unfollow</button></a>
+            <% }
+        } %>
+            <hr>
+        <% }) %>
+</div>
+
+<%- include('partials/footer') -%>

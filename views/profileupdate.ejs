@@ -1,0 +1,10 @@
+<%- include('partials/header') -%>
+
+<div>
+    <form action="/profile/update/<%= userDetails._id %>" method="POST" enctype="multipart/form-data">
+        Change Picture <input type="file" name="file">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<%- include('partials/footer') -%>

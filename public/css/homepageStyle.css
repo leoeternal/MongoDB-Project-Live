@@ -1,0 +1,54 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper{
+    
+    width: 99vw;
+    height: 99.5vh;
+    margin: auto;
+}
+
+.header{
+   
+    width: 99%;
+    height: auto;
+    margin: auto;
+    margin-top: 2px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.website-name{
+    
+    width: 200px;
+    height: 40px;
+    margin: 2px;
+}
+
+.website-name p{
+    font-size: 30px;
+    color:tomato;
+}
+
+.links-container{
+    width: 600px;
+    height: auto;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.link{
+
+    border-right: 1px solid;
+    width: 100px;
+    height: 40px;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

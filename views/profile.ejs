@@ -1,0 +1,80 @@
+<%- include('partials/header') -%>
+
+<div class="body-container">
+    <% var likedStatus=false %>
+    <% var postCount=0;
+       var followers=0;
+       var followings=0;
+    %>
+    <div class="profile-header">
+        <div class="profile-picture-container"> 
+
+            <% if(userDetails.profilepicturestatus===false){
+                if(userDetails._id.toString()===loggedInUser._id.toString()){ %>
+                    <a href="/profile/update/<%= userDetails._id %>"><img src="<%= userDetails.profilepicture %>"></a>
+               <% } else { %>
+                <img src="<%= userDetails.profilepicture %>">
+               <% } 
+            } else {
+                if(userDetails._id.toString()===loggedInUser._id.toString()){ %>
+                    <a href="/profile/update/<%= userDetails._id %>"><img src="/image/<%= userDetails.profilepicture %>"></a>
+                <% } else { %>
+                    <img src="/image/<%= userDetails.profilepicture %>">
+                <% }
+            } %>
+        </div>
+        <div class="profile-user-info-container">
+            <p><b><%= userDetails.firstname%> <%= userDetails.lastname %></b></p>
+            <p><b><%= userDetails.email %></b></p>
+            <p><b> <%= userDetails.contact %></b></p>
+        </div>
+        <div class="profile-bio-container">
+
+        </div>
+    </div>
+    <br>
+    <% allPosts.forEach((post)=>{
+        if(post.user.id.toString()==userDetails._id.toString()){
+            postCount++;
+        }
+    }) %>
+    <% userDetails.followings.forEach((follow)=>{
+        followings++;
+    }) %>
+    <% userDetails.followers.forEach((follow)=>{
+        followers++;
+    }) %>
+    <p><b>Post: <%= postCount %></b></p>
+    <p><b>Followings: <%= followings %></b></p>
+    <p><b>Followers: <%= followers %></b></p>
+    <hr><hr>
+    <br>
+    <% allPosts.forEach((post)=>{ 
+        if(post.user.id.toString()==userDetails._id.toString()){
+            %>
+            <p><a href="/profile/<%= post.user.id %>"><%= post.user.firstname %></a></p>
+        <p><b><%= post.title %></b></p>
+        <p><%= post.body %></p>
+        <p><%= post.createdAt %></p>
+        <% post.likePersons.forEach((person)=>{
+            if(person.id.toString()==userDetails._id.toString()){
+                likedStatus=true;
+            }
+        }) %>
+        <% if(likedStatus==false){ %>
+            <p><a href="/like/<%= post._id %>">like</a>&nbsp;&nbsp;<b><%= post.likeCount %></b></p>
+            
+        <% }else{ %>
+            <p><a href="/dislike/<%= post._id %>">dislike</a>&nbsp;&nbsp;<b><%= post.likeCount %></b></p>
+            <% likedStatus=false %>
+        <% } %>
+        <a href="/viewpost/<%= post._id %>">comment</a>
+        <% if(loggedInUser._id.toString()==post.user.id.toString()){ %>
+            <a href="/delete/<%= post._id %>"><button>Delete</button></a>   
+        <% } %>
+        <br><br>
+        <%}
+    }) %>
+</div>
+
+<%- include('partials/footer') -%>

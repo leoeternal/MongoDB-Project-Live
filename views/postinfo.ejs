@@ -1,0 +1,35 @@
+<%- include('partials/header') -%>
+<% var likedStatus=false %>
+<h1>Post Comment page</h1>
+<br><hr><br>
+<p><a href="/profile/<%= findPost.user.id %>"><%= findPost.user.firstname %></a></p>
+<p><%= findPost.title %></p>
+<p><%= findPost.body %></p>
+<p><%= findPost.createdAt %></p>
+<% findPost.likePersons.forEach((person)=>{
+    if(person.id.toString()==userDetails._id.toString()){
+        likedStatus=true;
+    }
+}) %>
+<% if(likedStatus==false){ %>
+    <p><a href="/like/<%= findPost._id %>">like</a>&nbsp;&nbsp;<b><%= findPost.likeCount %></b></p>
+    
+<% }else{ %>
+    <p><a href="/dislike/<%= findPost._id %>">dislike</a>&nbsp;&nbsp;<b><%= findPost.likeCount %></b></p>
+    <% likedStatus=false %>
+<% } %>
+
+<% findPost.comments.forEach((comment)=>{
+    %>
+    <p><a href="/profile/<%= comment.id %>"><%= comment.firstname %></a>&nbsp;&nbsp;<%= comment.comment %></p>
+<% }) %>
+
+<form action="/comment/<%= findPost._id %>" method="POST">
+    comment <input type="text" name="comment" placeholder="Enter comment">
+    <button>Submit</button>
+</form>
+<% if(userDetails._id.toString()==findPost.user.id.toString()){ %>
+    <a href="/delete/<%= findPost._id %>"><button>Delete</button></a>   
+<% } %>
+
+<%- include('partials/footer') -%>
