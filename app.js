@@ -33,17 +33,15 @@ app.get("/", (req, res) => {
 app.get("/home", auth, async (req, res) => {
   try {
     const allPosts = await Post.find();
-    res
-      .status(201)
-      .render("homepagewithlogin.ejs", {
-        userDetails: req.user,
-        allPosts: allPosts,
-      });
+    res.status(201).render("homepagewithlogin.ejs", {
+      userDetails: req.user,
+      allPosts: allPosts,
+    });
   } catch (error) {
     res.status(401).send(error);
   }
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is running on port ${port}`);
 });
